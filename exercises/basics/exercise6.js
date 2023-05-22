@@ -16,3 +16,20 @@ const rlSync = require('readline-sync');
 
 let phrase = rlSync.question('Please enter a phrase: ');
 console.log(`There are ${phrase.length} characters in "${phrase}".`);
+
+// Further Exploration
+// The solution counts all the characters in the phrase, including spaces.
+// Refactor it so that it ignores spaces.
+
+let spaceless = phrase.replace(/ /g, '');
+console.log(
+  `There are ${spaceless.length} non-space characters in "${phrase}".`
+);
+
+// As an added challenge, further refactor the solution so that it only counts
+// alphabetic characters.
+
+let alphabetic = phrase.replace(/[^a-z]/gi, '');
+console.log(
+  `There are ${alphabetic.length} alphabetic characters in "${phrase}".`
+);
