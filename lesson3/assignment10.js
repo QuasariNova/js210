@@ -21,7 +21,7 @@ for(let i = 1; i < 4; ++i) {
   scores.push(score);
 }
 
-let avgScore = scores.reduce((sum, value) => sum + value, 0) / 3;
+let avgScore = averageScore(scores);
 
 let letterGrade = 'F';
 if (avgScore >= 90) {
@@ -34,3 +34,12 @@ if (avgScore >= 90) {
 
 console.log('Based on the average of your 3 scores your letter grade is ' +
             `"${letterGrade}".`);
+
+// Our solution limits us to exactly three input scores. Modify it to accept
+// any number of scores. To simplify matters, move the computation of the
+// average into a function.
+
+function averageScore(scores) {
+  let ttlScore = scores.reduce((sum, value) => sum + value, 0);
+  return ttlScore / scores.length;
+}
