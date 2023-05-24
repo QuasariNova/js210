@@ -15,9 +15,25 @@ logMultiples(21);
 // 63
 // 21
 
+/* Original
 function logMultiples(number) {
   for(let i = 100; i >= number; --i) {
     if (i % 2 == 0 || i % number) continue;
+    console.log(i);
+  }
+}
+*/
+
+// Further Exploration
+// This solution must step through every number between 100 and 0.
+// Alternatively, you can determine the number's largest multiple that is less
+// than 100, then start the loop with that multiple. With each iteration of the
+// loop, you can decrement the number by the argument; when the result is
+// negative, you can quit.
+
+function logMultiples(number) {
+  for(let i = Math.floor(100 / number) * number; i >= 0; i -= number) {
+    if (i % 2 == 0) continue;
     console.log(i);
   }
 }
