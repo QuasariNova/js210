@@ -1,30 +1,28 @@
-function rot13Character(character) {
-  const ALPHA_START = 'a'.charCodeAt(0);
+function rotLowerCharacter(lowerCaseChar, rotFactor) {
+  const LOWERCASE_START = 'a'.charCodeAt(0);
   const LETTERS = 26;
-  const ROTATE = 13;
 
-  let lowerCase = character.toLowerCase();
+  let code = lowerCaseChar.charCodeAt(0);
+  let offset = code - LOWERCASE_START;
+  let newOffset = (offset + rotFactor) % LETTERS;
 
-  if (!/[a-z]/.exec(lowerCase)) {
-    return character;
-  }
-
-  let offset = lowerCase.charCodeAt(0) - ALPHA_START;
-  offset = (offset + ROTATE) % LETTERS;
-
-  let newCharacter = String.fromCharCode(ALPHA_START + offset);
-  if (/[A-Z]/.exec(character)) {
-    newCharacter = newCharacter.toUpperCase();
-  }
-
-  return newCharacter;
+  return String.fromCharCode(LOWERCASE_START + newOffset);
 }
 
 function rot13(string) {
-  let encoded = '';
+  const ROT_FACTOR = 13;
 
+  let encoded = '';
   for(let i = 0; i < string.length; ++i) {
-    encoded += rot13Character(string[i]);
+    let character = string[i];
+
+    if (character.match(/[a-z]/i)) {
+      character = rotLowerCharacter(string[i].toLowerCase(), ROT_FACTOR);
+    }
+
+    if (string[i].match(/[A-Z]/)) character = character.toUpperCase();
+
+    encoded += character
   }
 
   return encoded;
