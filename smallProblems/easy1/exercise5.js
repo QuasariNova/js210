@@ -36,3 +36,17 @@ for(let i = 2; i <= end; ++i) {
 }
 
 console.log(`The ${opString} of the integers between 1 and ${end} is ${acc}`);
+
+// What if the input was an array of integers instead of just a single integer?
+// How would your computeSum and computeProduct functions change? Given that
+// the input is an array, how might you make use of the
+// Array.prototype.reduce() method?
+
+// Using the reduce method would be easier, I basically mimiced it in my
+// solution.
+
+// For sum:
+// arr.reduce((acc, num) => acc + num, 0);
+
+// For product:
+// arr.reduce((acc, num) => acc * num, 1);
