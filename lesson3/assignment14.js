@@ -33,6 +33,8 @@ function indexOf(firstString, secondString) {
   return -1;
 }
 
+/*
+// Original
 function lastIndexOf(firstString, secondString) {
   for(let i = firstString.length - secondString.length; i >= 0; --i) {
     let subString = firstString.slice(i, i + secondString.length);
@@ -43,4 +45,18 @@ function lastIndexOf(firstString, secondString) {
   }
 
   return -1;
+}
+*/
+
+// If you haven't used it yet, implement the lastIndexOf function by reusing
+// your indexOf function.
+
+function lastIndexOf(firstString, secondString) {
+  firstString = firstString.split('').reverse().join('');
+  secondString = secondString.split('').reverse().join('');
+
+  let index = indexOf(firstString, secondString);
+  if (index === -1) return -1;
+
+  return firstString.length - index - secondString.length;
 }
