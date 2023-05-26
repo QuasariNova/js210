@@ -10,6 +10,8 @@ crunch('ggggggggggggggg');            // "g"
 crunch('a');                          // "a"
 crunch('');                           // ""
 
+/*
+// original
 function crunch(string) {
   let out = '';
 
@@ -19,3 +21,9 @@ function crunch(string) {
 
   return out;
 }
+*/
+
+// further exploration:
+// For a nice challenge, give this a try with regular expressions.
+
+const crunch = (string) => string.replace(/(.)\1+/g, '$1');
