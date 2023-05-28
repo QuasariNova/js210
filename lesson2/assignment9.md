@@ -172,6 +172,7 @@ On line 1 we declare the variable `a` and initialize it to the value `1`. On lin
 `bar`'s function is declared on lines 5 through 8. It is able to access `a` since `a` is in a scope above it. It reassigns `a` to `3` on line 6 and returns `4` on line 7. `4` gets returned on line 10, which is passed to the `console.log` on line 13 as an argument and outputs `4`.
 
 On line 14, we output the value of `a` by passing it `console.log` as an argument and output `3`.
+
 ---
 
 8.  ```js
