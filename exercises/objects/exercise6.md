@@ -23,3 +23,24 @@ average(myArray);
 <br>
 
 Since negative integers would be properties and not elements, the `myArray` array would not show this in its `length` property. `myArray` would have a `length` property of `2`, not `4`, so this `average` function would return `10`.
+
+---
+
+# Further Exploration
+
+Refactor the `average` function so that it returns the result that the user expected, `5`.
+
+<br>
+<br>
+<br>
+
+```js
+function average(array) {
+  let sum = 0;
+
+  for (let i = -2; i < array.length; i += 1) {
+    sum += array[i];
+  }
+
+  return sum / (array.length + 2);
+}
