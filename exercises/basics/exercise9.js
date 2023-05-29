@@ -25,7 +25,7 @@ function integerToString(int) {
   do {
     str = NUMS[int % 10] + str;
     int = Math.floor(int / 10);
-  } while (int > 0)
+  } while (int > 0);
 
   return str;
 }

@@ -19,7 +19,7 @@ stringToSignedInteger('-570');      // -570
 stringToSignedInteger('+100');      // 100
 
 function stringToSignedInteger(str) {
-  let sign = str.match(/^[+\-]/);
+  let sign = str.match(/^[+-]/);
   if (sign) str = str.slice(1);
 
   let power = str.length - 1;
