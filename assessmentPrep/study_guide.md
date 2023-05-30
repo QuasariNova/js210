@@ -32,12 +32,10 @@
 
 ### Logical Operators ([Lesson 1: Operators](https://launchschool.com/lessons/7377ece4/assignments/8cdc0e98))
 
-## variable scope ([Lesson 2: Functional Scopes and Lexical Scope](https://launchschool.com/lessons/7cd4abf4/assignments/0b1349b7))
-### Block scope
-
-### Function scope
-
-### Lexical Scope
+## variable scope ([Variable Scope](https://launchschool.com/books/javascript/read/variables#variablescope)) ([Functions & Scope](https://launchschool.com/books/javascript/read/functions#functionsscope)) ([Lesson 2: Functional Scopes and Lexical Scope](https://launchschool.com/lessons/7cd4abf4/assignments/0b1349b7))
+- Block scope
+- Function scope
+- Lexical Scope
 
 ### Hoisting ([Lesson 2: Hoisting](https://launchschool.com/lessons/7cd4abf4/assignments/510e62bb))
 
@@ -56,12 +54,12 @@
 - ~~symbols~~ (not in course)
 - ~~big integer~~ (not in course)
 
-### Compound Data types
-- Simple `Object`
+### Compound Data types ([Lesson 5: Mutability of Values and Objects](https://launchschool.com/lessons/79b41804/assignments/40b5852e))
+- Simple `Object` ([Lesson 5: Object Properties](https://launchschool.com/lessons/79b41804/assignments/5564f6e8)) ([Lesson 5: Stepping through Object Properties](https://launchschool.com/lessons/79b41804/assignments/b88f5906))
     - Properties and mutation
     - `[]` notation
     - `.` notation
-- `Array` ([Lesson 4: Arrays](https://launchschool.com/lessons/e15c92bb/assignments/20dcbcab))
+- `Array` ([Lesson 4: Arrays](https://launchschool.com/lessons/e15c92bb/assignments/20dcbcab)) ([Lesson 5: Arrays and Objects](https://launchschool.com/lessons/79b41804/assignments/5dc08268)) ([Lesson 5: Arrays: What is an Element?](https://launchschool.com/lessons/79b41804/assignments/153a803b))
     - Is an Object
     - Elements
     - `Array.isArray`
@@ -70,12 +68,12 @@
     - `filter`
     - `find`
 
-### type conversions/coercions ([Lesson 1: Explicit Primitive Type Coercions](https://launchschool.com/lessons/7377ece4/assignments/3899592c)) ([Lesson 1: Implicit Primitive Type Coercions](https://launchschool.com/lessons/7377ece4/assignments/3d2e392a))
+### type conversions/coercions ([Lesson 1: Explicit Primitive Type Coercions](https://launchschool.com/lessons/7377ece4/assignments/3899592c)) ([Lesson 1: Implicit Primitive Type Coercions](https://launchschool.com/lessons/7377ece4/assignments/3d2e392a)) ([Lesson 4: Arrays and Operators](https://launchschool.com/lessons/e15c92bb/assignments/5aed9f6f))
 - `Number`
 - `String`
 - boolean
 
-### truthiness
+### truthiness ([Truthiness](https://launchschool.com/books/javascript/read/flow_control#truthiness))
 - falsy Values
     - `false`
     - `0`
@@ -87,30 +85,38 @@
     - Any non-falsy value
 
 # Functions
-## First class functions
+## First class functions ([Three Ways to Define a Function](https://launchschool.com/books/javascript/read/functions#threewaystodefineafunction))
 
-## function definition and function invocation ([Lesson 2: Nested Functions](https://launchschool.com/lessons/7cd4abf4/assignments/27dc68d7)) ([Lesson 2: Function Declaration and Function Expressions](https://launchschool.com/lessons/7cd4abf4/assignments/5cb67110))
+## function invocation ([Using Functions](https://launchschool.com/books/javascript/read/functions#usingfunctions)) ([Function Composition](https://launchschool.com/books/javascript/read/functions#functioncomposition))
+
+## function definition ([Three Ways to Define a Function](https://launchschool.com/books/javascript/read/functions#threewaystodefineafunction)) ([Lesson 2: Nested Functions](https://launchschool.com/lessons/7cd4abf4/assignments/27dc68d7)) ([Lesson 2: Function Declaration and Function Expressions](https://launchschool.com/lessons/7cd4abf4/assignments/5cb67110))
 - function declaration ([Lesson 2: Function Definition](https://launchschool.com/lessons/7cd4abf4/assignments/067955f4))
 - function expressions
 - arrow functions
 - function invocation ([Lesson 2: Function Invocation](https://launchschool.com/lessons/7cd4abf4/assignments/7c802de8))
-## implicit return value of function invocations
+
+## Functions arguments ([Lesson 5: Working with Function Arguments](https://launchschool.com/lessons/79b41804/assignments/55096c15))
+- Default parameters ([Default Parameters](https://launchschool.com/books/javascript/read/functions#defaultparametrs))
+- Rest Parameters
+- `arguments` object
 
 ## Closures ([Lesson 2: Closures](https://launchschool.com/lessons/7cd4abf4/assignments/0ea7c745))
 
-## side effects
+## side effects ([Lesson 5: Pure Functions and Side Effects](https://launchschool.com/lessons/79b41804/assignments/88138dd5))
 
-## pure functions
+## pure functions ([Lesson 5: Pure Functions and Side Effects](https://launchschool.com/lessons/79b41804/assignments/88138dd5))
 
-## console.log vs return ([Expressions and Return Values](https://launchschool.com/books/javascript/read/basics#expressionsandreturnvalues))
+## console.log vs return ([Return Values](https://launchschool.com/books/javascript/read/functions#returnvalues)) ([Expressions and Return Values](https://launchschool.com/books/javascript/read/basics#expressionsandreturnvalues))
 
-## partial function application
+## partial function application ([Partial Function Application](https://launchschool.com/lessons/7cd4abf4/assignments/0ea7c745))
 
 # Syntax
 ## Expressions vs Statements ([Lesson 1: Expressions and Statements](https://launchschool.com/lessons/7377ece4/assignments/d84fdace))
 
 ## Control Statements ([Lesson 1: Conditionals](https://launchschool.com/lessons/7377ece4/assignments/5f7c3a20)) ([Lesson 1: Looping and Iteration](https://launchschool.com/lessons/7377ece4/assignments/a261b334))
 
-## strict mode vs. sloppy mode
+## strict mode vs. sloppy mode ([Modern JavaScript: Strict Mode](https://launchschool.com/gists/406ba491))
 
-## JavaScript syntactic sugar
+## JavaScript syntactic sugar ([Modern JavaScript: Syntactic Sugar](https://launchschool.com/gists/2edcf7d7))
+
+## Errors ([Lesson 6: Errors](https://launchschool.com/lessons/d299fc36/assignments/d52565cc)) ([Lesson 6: Catching Errors](https://launchschool.com/lessons/d299fc36/assignments/748ab030))
