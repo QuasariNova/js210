@@ -21,3 +21,10 @@ const retireYear = year + yearsLeft;
 
 console.log(`\nIt's ${year}. You will retire in ${retireYear}`);
 console.log(`You only have ${yearsLeft} years of work to go!`);
+
+// What would happen if the new keyword wasn't used in defining the today
+// variable on line 4?
+
+// I don't declare a variable named today, but if we used Date() instead of
+// new Date(), it would return a string with the current date and time instead
+// of a date object.
