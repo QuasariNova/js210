@@ -50,3 +50,32 @@ const target = Number(rlSync.question('Enter the last number: '));
 console.log(
   `The number ${target} ${appearanceString(nums, target)} in [${nums}]`
 );
+
+// What if the problem was looking for a number that satisfies some condition
+// (e.g., a number greater than 25), instead of a specific number? Would the
+// current solution still work? Why or why not? Think about this first before
+// scrolling down.
+
+// Our solution wouldn't work because it checks only for the specific number,
+// so it only goes off of equality.
+
+// Possible Solution:
+
+// function isIncluded(arr, val) {
+//   for (let i = 0; i < arr.length; i += 1) {
+//     if (arr[i] > val) {
+//       return true;
+//     }
+//   }
+
+//   return false;
+// }
+
+// Explore the Array.prototype.some method, and see if you can change the
+// possible solution shown above to make use of that method instead.
+
+/*
+function isIncluded(arr, val) {
+  return arr.some((element) => val > element);
+}
+*/
