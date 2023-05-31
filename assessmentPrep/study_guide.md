@@ -10,15 +10,47 @@
     - Function names
     - Function Parameters
     - Class names
+
 ### Declaration ([Declaring and Assigning Variables](https://launchschool.com/books/javascript/read/variables#declaringandassigningvariables)) ([Lesson 1: Variables](https://launchschool.com/lessons/7377ece4/assignments/4a43f341))
 - `let`
+    - Block scoped
+    - When hoisted is unset until initialized. Will throw a `ReferenceError` if accessed prior to initialization.
 - `const`
+    - Block scoped
+    - When hoisted is unset until initialized. Will throw a `ReferenceError` if accessed prior to initialization.
+    - Is a constant, can't change its reference
+    - Must have an initializer with its declaration.
 - `var`
+    - Function scoped
+    - When hoisted is initialized to `undefined` until assigned a value.
+    - When declared in the global scope becomes a property of the global object.
+    - When declared in a block that is not run, is still declared due to hoisting
+- undeclared
+    - Undeclared variables are global variable.
+    - They happen when you assign a variable that hasn't been declared.
+
 ### Variables as pointers ([Variables as Pointers](https://launchschool.com/books/javascript/read/more_stuff#variablesaspointers)) ([Lesson 2: Pass by Reference vs Pass by Value](https://launchschool.com/lessons/7cd4abf4/assignments/c7e3e102))
+- Variables are pointers to addresses in memory
+- Primitive types values exist at that memory address (pass-by-value)
+    - When a variable with a primitive type is assigned to another variable, the primitive types value is copied to the other variables address.
+- Compound data types values exist at another memory address (pass by value of the reference)
+    - When a compound data type is assigned to a variable, the variable stores the memory address for that type at its address.
+    - When assigning a variable with a compound data type to another variable, the memory address to the object is given to the new variable.
 
 ### naming conventions (legal vs idiomatic) ([Lesson 1: Variables](https://launchschool.com/lessons/7377ece4/assignments/4a43f341)) ([Lesson 1: Code Style](https://launchschool.com/lessons/7377ece4/assignments/88ed1c52))
 - Legal
+    - Case-Sensitive
+    - Any length
+    - Must start with a letter, _, or $
+    - Must be made up of letters, numbers, _s, and/or $s
+    - Must not be a reserved word
 - Idiomatic
+    - cameCase for most variables and functions
+    - PascalCase for constructor functions
+    - SCREAMING_SNAKE_CASE for unchanging configuration values and magic numbers
+    - Don't start variables with `_` or `$`
+    - Acronyms are all caps
+
 
 ### Assignment ([Declaring and Assigning Variables](https://launchschool.com/books/javascript/read/variables#declaringandassigningvariables)) ([Lesson 1: Variables](https://launchschool.com/lessons/7377ece4/assignments/4a43f341))
 - `=` operator
@@ -27,17 +59,62 @@
 
 ### Comparison ([Equality Comparison](https://launchschool.com/books/javascript/read/basics#equalitycomparison)) ([Lesson 1: Operators](https://launchschool.com/lessons/7377ece4/assignments/8cdc0e98))
 - `==` and `!=`
+        - Loose Equality operators
+        - Intended to check if both operands are the same value regardless of type
+        - Uses a system of rules to coerce operands to do check.
+    - Can lead to unintended outcomes due to how it works
 - `===` and `!==`
+    - Strict Equality operators
+    - Checks that both sides are the same type and value.
 - `>`, `>=`, `<`, and `<=`
+    - Works with strings and numbers
 
 ### Logical Operators ([Lesson 1: Operators](https://launchschool.com/lessons/7377ece4/assignments/8cdc0e98))
+- `&&`
+    - Short circuits, if the left operand is falsy, it stops there
+    - Returns the operands return value that was last evaluated(left if left was falsy, right otherwise)
+    - When used in a conditional is effectively true when both operands are truthy.
+- `||`
+    - Short circuits, if the left operand is truthy, it stops there
+    - Returns the operands retun value that was last evaluated(left if left was truthy, right otherwise)
+    - When used in a conditional is effectively true when one operand is truthy
+- `!`
+    - Unary operator
+    - Returns `true` if the operand is falsy
+- `!!`
+    - Used to change a values truthiness to a boolean
 
 ## variable scope ([Variable Scope](https://launchschool.com/books/javascript/read/variables#variablescope)) ([Functions & Scope](https://launchschool.com/books/javascript/read/functions#functionsscope)) ([Lesson 2: Functional Scopes and Lexical Scope](https://launchschool.com/lessons/7cd4abf4/assignments/0b1349b7))
 - Block scope
+    - Created with each new block or function body.
+        - Function bodies are not blocks, but can be treated as one
+        - A block is a "block" of code inside `{}` that is not an object literal
+    - `let` and `const` are scoped to the block level
 - Function scope
+    - Created with each new Function body
+    - `var` is locally scoped at the function level
+    - parameters are locally scoped to the function
 - Lexical Scope
+    - The source code defines the scope.
+    - Where a scope is in relation to other scopes in the file is how JavaScript searches for variables.
+    - JavaScript goes up the levels until it reaches the top level looking for a variable when one is used. (Bottom -> Top)
+- Variable Shadowing
+    - Happens when a lower scope declares a local variable with the same name as a variable in a higher scope.
+    - Since JavaScript searches bottom -> top, it will find the lower scopes variable first, thus hiding the higher level scopes variable
 
 ### Hoisting ([Lesson 2: Hoisting](https://launchschool.com/lessons/7cd4abf4/assignments/510e62bb))
+- JavaScript has two phases to code execution
+    - Creation phase
+        - Searches for declarations and makes note of them and their scopes
+    - Execution phase
+        - Runs code line by line
+- The actions taken by the creation phase lead to a mental model called hoisting(It doesn't exactly work like hoisting describes)
+- Variables and Function declarations are moved to the top of their scopes prior to execution
+- `let` and `const` variables are left unset, throwing a `ReferenceError` if accessed prior to initialization
+- `var` variables are initialized as `undefined` until assigned in code
+- Function declarations are moved body and all above other variable declarations.
+    - You can call functions prior to them being defined due to this.
+- Function expressions assigned/initialized to a variable follow variable hoisting rules.
 
 ## Types ([Lesson 1: Data Types](https://launchschool.com/lessons/7377ece4/assignments/bd02b66c)) ([Lesson 2: Review: Objects vs Primitive Types](https://launchschool.com/lessons/7cd4abf4/assignments/e30099b0))
 ### primitive values ([Lesson 1: Primitive Values are Immutable](https://launchschool.com/lessons/7377ece4/assignments/74cfbc2a))
