@@ -83,6 +83,9 @@
     - Returns `true` if the operand is falsy
 - `!!`
     - Used to change a values truthiness to a boolean
+- `??`
+    - Nullish Coelescing Operator
+    - Used like `||`, but only goes to the right operand when the left evaluates to `undefined` or `null`
 
 ## variable scope ([Variable Scope](https://launchschool.com/books/javascript/read/variables#variablescope)) ([Functions & Scope](https://launchschool.com/books/javascript/read/functions#functionsscope)) ([Lesson 2: Functional Scopes and Lexical Scope](https://launchschool.com/lessons/7cd4abf4/assignments/0b1349b7))
 - Block scope
@@ -118,37 +121,198 @@
 
 ## Types ([Lesson 1: Data Types](https://launchschool.com/lessons/7377ece4/assignments/bd02b66c)) ([Lesson 2: Review: Objects vs Primitive Types](https://launchschool.com/lessons/7cd4abf4/assignments/e30099b0))
 ### primitive values ([Lesson 1: Primitive Values are Immutable](https://launchschool.com/lessons/7377ece4/assignments/74cfbc2a))
+- Primitive values are immutable
 - `Number`
+    - Can be both integer and float.
     - `Infinity`
+        - `1 / 0`
     - `-Infinity`
+        - `1 / -0`
     - `NaN`
         - `Number.isNaN`
+            - method to check if a value is `NaN`
         - `NaN !== NaN`
+            - Only value that is not equal to itself
 - `String` ([Lesson 1: More on Strings](https://launchschool.com/lessons/7377ece4/assignments/84419ace))
+    - `for of` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of))
+        - Used to iterate over each element in an enumerable collection. (can also work on arrays)
+    - `[]` operator
+        - Used to access each individual character
+        - Index starts at 0.
+        - Attempting to access characters that don't exist returns `undefined`
+    - `string.length` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length))
+        - Returns the number of characters in the string
+    - `string.charCodeAt(idx)` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt))
+        - Returns the UTF-16 code for the character at `idx` index.
+    - `string.includes(substring)` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes))
+        - Returns whether the `string` contains `substring` (boolean)
+    - `string.match(regex)` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match))
+        - Searches the string for regex matches(with global flag, all the string, otherwise first match)
+        - If no match is found `null` is returned
+        - If `g` flag is used returns all results will be returned in an array. No capture groups will be returned.
+        - if `g` flag is not used returns the first match and its related capture groups.
+    - `string.repeat(times)` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat))
+        - Returns a new string which is `string` repeated `times` times.
+    - `string.replace(regex, replacement)` ([MDN Documentaiton](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace))
+        - Returns a new string with the first match replaced with `replacement`
+        - if the `g` flag is used, all matches are replaced.
+        - Can use capture groups, using `$1`-`$9` to represent the captured group
+    - `string.slice(start, end)`
+        - Returns a new string that is the substring of `string` from index `start` up to, but not including, index `end`.
+        - If `end` is not given as an argument, returns the rest of the string from index `start`.
+    - `string.split(separator)`
+        - Splits the string into an array of strings a the string `seperator`
 - `undefined`
+    - Means it implicitly doesn't have a value.
+    - A lot of things will default to `undefined`
 - `null`
+    - Means it explicitly doesn't have a value.
+    - Must be assigned, isn't a default.
 - `boolean`
+    - True or false
 - ~~symbols~~ (not in course)
 - ~~big integer~~ (not in course)
 
 ### Compound Data types ([Lesson 5: Mutability of Values and Objects](https://launchschool.com/lessons/79b41804/assignments/40b5852e))
+- Compound Data types are mutable
 - Simple `Object` ([Lesson 5: Object Properties](https://launchschool.com/lessons/79b41804/assignments/5564f6e8)) ([Lesson 5: Stepping through Object Properties](https://launchschool.com/lessons/79b41804/assignments/b88f5906))
     - Properties and mutation
+        - Objects are made up of key value pairs
+        - The key must be a string, if not it will be coerced into a string
+        - Properties that are assigned/reassigned mutate the object
     - `[]` notation
+        - `object[key]`
+        - Can take an expression to dynamically access properties
+        - Useful for accessing values that aren't easily accessible by `.` notation
     - `.` notation
+        - `object.key`
+        - Useful when the property key doesn't include invalid characters
+    - `delete` operator ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete))
+        - Removes a property from an object `delete object.property`
+    - `for in` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in))
+        - Iterates over the keys in an object
+    - `Object.keys(object)` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys))
+        - Returns an array of keys available to the object
+    - `Object.values(object)` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values))
+        - Returns an array of the values inside the object
+    - `Object.entries(object)` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries))
+        - Returns a nested array of the key value pairs inside the object
+    - `in` operator ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in))
+        - `key in object`
+        - Used to tell if an object has a key (boolean)
+    - `Object.assign(object1, object2)` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign))
+        - Copies the properties from the second object into the first object mutating it.
+        - Can take more than 2 arguments, everything from the second one on is copied into the first.
+    - `Object.create(object)` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create))
+        - Creates a new object using `object` as a prototype
+        - Use `object.hasOwn(key)` to determine if a property is it's own or a prototypes (boolean) ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn))
+
 - `Array` ([Lesson 4: Arrays](https://launchschool.com/lessons/e15c92bb/assignments/20dcbcab)) ([Lesson 5: Arrays and Objects](https://launchschool.com/lessons/79b41804/assignments/5dc08268)) ([Lesson 5: Arrays: What is an Element?](https://launchschool.com/lessons/79b41804/assignments/153a803b))
     - Is an Object
+        - All the previous topics on objects work on arrays
     - Elements
-    - `Array.isArray`
-    - `forEach`
-    - `map`
-    - `filter`
-    - `find`
+        - Array elements are keys that are non-negative integers.
+        - accessed with `[]` operator
+    - `array.length` property ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length))
+        - Is one more than the highest indexed element.
+        - Can be larger than the number of set elements
+        - Can be set, expanding or truncating the array if bigger or smaller.
+        - If truncated, elements at and above the new `length` value are lost.
+        - If expanded, new elements are not set, will return `undefined` if accessed, and will not appear in iteration until set. The array would be sparse.
+    - `Array.isArray(object)` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray))
+        - Returns if `object` is an array (boolean)
+        - Use since `typeof` keyword returns `'object'` for arrays
+    - `for of` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of))
+        - Used to iterate over each element in an enumerable collection. (can also work on strings)
+    - `forEach` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach))
+        - Used to iterate over each element in an array
+        - Takes a callback function as an argument, which it calls for every element in the array.
+        - Returns `undefined`
+    - `map` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map))
+        - Used to transform an array
+        - Takes a callback function as an argument and uses the return value of the callback function called on each element to create a new array
+        - Returns a new array with each element transformed from the original using the callback function.
+    - `filter` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter))
+        - Performs selection on an array
+        - Takes a callback function, whose return value is used to determine if an element is kept(return is truthy)
+        - Returns a new array with only the elements that returned a truthy value from the callback function.
+    - `find` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find))
+        - Finds the first elements value that meets a certain criteria
+        - Takes a callback function, whose return value is used to determine if we found the correct element.
+        - Returns the first value that returns truthy when passed to the callback function.
+    - `every` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every))
+        - Tests if every element passes some test
+        - Takes a callback function that is invoked on each element that should return a truthy/falsy value.
+        - Returns `true` or `false`
+    - `from`([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from))
+        - Creates a new Array from an iterable or array-like object.
+    - `indexOf` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf))
+        - Takes a value/reference as an argument
+        - Returns first index that has the same value/reference as the one passed
+        - If it can not find an element with that value/reference, returns -1
+        - Can take a second argument with index to search from.
+            - If positive, searches left to right
+            - If negative, searches right to left(-1 is last index)
+    - `join` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join))
+        - Combines each element into a string
+        - Can pass a seperator as an argument, which will go between each element, by default is a `','`
+    - `pop` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop))
+        - Removes and returns the last element in the array
+        - Permanently mutates the array
+    - `push` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push))
+        - Takes at least 1 argument, which it places at the end of the array
+        - Permanently mutates the array
+        - Returns the new `length` of the array.
+    - `reduce` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce))
+        - Used to "reduce" an array to one value using a callback function and an optional starting value
+        - Takes a callback function with two parameters, one the accumulator, the other an element
+        - Will call the callback function for every element by passing the accumulator and current element to it. The return value of the function is assigned to the accumulator.
+        - Will return the accumulator after iterating over the array
+    - `reverse` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse))
+        - Reverses the array in place
+        - Mutates the array
+    - `shift` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift))
+        - Like `pop`, but for the start of the array
+    - `slice` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice))
+        - Can be used to copy an array
+        - Returns a shallow copy of a portion of an array.
+        - Takes a starting index and ending index(excluded)
+    - `some` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some))
+        - Tests if at least one element passes a test
+        - Takes a callback function, which is invoked for each element. Should return a truthy/falsy value.
+        - Returns `true` or `false`
+    - `sort` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort))
+        - Sorts an array in place
+        - Can pass a callback function to determine how it sorts
+            - Takes two arguments `a` and `b`
+            - If returns `>0` `a` is placed after `b`
+            - If returns `<0` `a` is placed before `b`
+            - if returns `===0` `a` and `b` are left in place
+    - `splice` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice))
+        - Used to change the content of an array by removing or replacing elements, and/or adding new elements.
+        - Most easily removes elements from array `splice(start, deleteCount)`
+            - `start` is what index to start at. Positive goes left to right, negative goes right to left.
+            - `deleteCount` is how many elements to remove
+            - Will return a new array with the removed elements.
+        - Mutates original array
+    - `unshift` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift))
+        - Like `push`, but for the start of the array
 
 ### type conversions/coercions ([Lesson 1: Explicit Primitive Type Coercions](https://launchschool.com/lessons/7377ece4/assignments/3899592c)) ([Lesson 1: Implicit Primitive Type Coercions](https://launchschool.com/lessons/7377ece4/assignments/3d2e392a)) ([Lesson 4: Arrays and Operators](https://launchschool.com/lessons/e15c92bb/assignments/5aed9f6f))
 - `Number`
+    - `Number()` constructor
+    - `parseInt()`
+        - second argument takes base, should always use with `10` unless you want another base.
+    - `parseFloat()`
+    - unary `+` operator
+    - Mathematical operators
 - `String`
+    - `String()` constructor
+    - `+` concatenation operator
+    - `.toString()`
 - boolean
+    - `!!`
+    - `'true' === 'true'`
 
 ### truthiness ([Truthiness](https://launchschool.com/books/javascript/read/flow_control#truthiness))
 - falsy Values
