@@ -306,10 +306,14 @@
     - `parseFloat()`
     - unary `+` operator
     - Mathematical operators
+        - `+` if used with nonstring types will coerce operands into numbers
+        - `-` `*` `/` `%` all coerce to numbers
 - `String`
     - `String()` constructor
     - `+` concatenation operator
+        - If one operand is a string, will coerce other to string
     - `.toString()`
+        - Not every type has a `toString()` method, use `String()`
 - boolean
     - `!!`
     - `'true' === 'true'`
@@ -326,20 +330,60 @@
     - Any non-falsy value
 
 # Functions
-## First class functions ([Three Ways to Define a Function](https://launchschool.com/books/javascript/read/functions#threewaystodefineafunction))
+## First class functions ([Three Ways to Define a Function](https://launchschool.com/books/javascript/read/functions#threewaystodefineafunction)) ([Lesson 2: Closures](https://launchschool.com/lessons/7cd4abf4/assignments/0ea7c745))
+- First-class value or first-call object:
+    - They can be assigned to a variable or an element of a data structure
+    - They can be passed as an argument to a function
+    - They can be returned as the return value of a function
+- Basically, since functions are objects in JavaScript, we can treat them as any other value and assign them to variables, used as arguments, and returned as values to a function.
 
-## function invocation ([Using Functions](https://launchschool.com/books/javascript/read/functions#usingfunctions)) ([Function Composition](https://launchschool.com/books/javascript/read/functions#functioncomposition))
+## function invocation ([Using Functions](https://launchschool.com/books/javascript/read/functions#usingfunctions)) ([Function Composition](https://launchschool.com/books/javascript/read/functions#functioncomposition)) ([Lesson 2: Function Invocation](https://launchschool.com/lessons/7cd4abf4/assignments/7c802de8))
+- Functions are invoked by appending a pair of parenthesis to the function's name
+- You can pass any number of arguments in between the parenthesis.
+    - It depends on the function how many arguments are processed.
+    - JavaScript is not strict with the number of arguments needed.
+- By default all functions return `undefined`
+- By giving an explicit return value through a `return` statement, something else can be returned.
+- We can combine functions through function composition
+    - Done by passing return value of one function as an argument to another.
 
 ## function definition ([Three Ways to Define a Function](https://launchschool.com/books/javascript/read/functions#threewaystodefineafunction)) ([Lesson 2: Nested Functions](https://launchschool.com/lessons/7cd4abf4/assignments/27dc68d7)) ([Lesson 2: Function Declaration and Function Expressions](https://launchschool.com/lessons/7cd4abf4/assignments/5cb67110))
 - function declaration ([Lesson 2: Function Definition](https://launchschool.com/lessons/7cd4abf4/assignments/067955f4))
+    - Happens when the `function` keyword is the first part of the statement
+    - `function name(parameters) { ... }`
+    - Functions name is also a variable
+    - Hoisted prior to variable declarations body and all, thus can be called prior to its definition.
 - function expressions
+    - Happens when the `function` keyword is not the first part of the statement
+    - Can be stored in a variable, passed as an argument, etc...
+    - `let myFunc = function (parameters) { ... }`
+    - Function can be named optionally, function name is only accessible inside the function body
 - arrow functions
-- function invocation ([Lesson 2: Function Invocation](https://launchschool.com/lessons/7cd4abf4/assignments/7c802de8))
+    - `(parameters) => expression` or `(parameters) => { ... }`
+    - If single line, the expressions return value is its return value
+    - Used mainly for callback functions
+        - A callback function is a function passed to another invoked function, in which the invoked function calls the callback function.
+    - Can be stored in a variable, passed as an argument, etc...
 
 ## Functions arguments ([Lesson 5: Working with Function Arguments](https://launchschool.com/lessons/79b41804/assignments/55096c15))
 - Default parameters ([Default Parameters](https://launchschool.com/books/javascript/read/functions#defaultparametrs))
-- Rest Parameters
 - `arguments` object
+    - An "Array-like" object
+    - Every function has this object implicitly
+    - Contains every argument passed
+    - Has a length property(which does not automatically increase/decrease and has no effect on the size of the "Array")
+    - Properties are non-negtive integers as strings
+    - Can not invoke Array methods itself
+- `...` Rest Parameters
+    - Works like the `*` operator for parameters in Ruby
+    - Allows you to have a parameter that can take any number of arguments
+    - `...parameter`
+    - parameter will be an array
+- `...` Spread operator
+    - Works like the `*` operator for arguments in Ruby
+    - Spreads an interable object across multiple arguments.
+    - `...collection`
+    - Each element is a different argument
 
 ## Closures ([Lesson 2: Closures](https://launchschool.com/lessons/7cd4abf4/assignments/0ea7c745))
 
