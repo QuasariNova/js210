@@ -128,6 +128,8 @@
         - `1 / 0`
     - `-Infinity`
         - `1 / -0`
+    - `0` and `-0`
+        - Equal each other
     - `NaN`
         - `Number.isNaN`
             - method to check if a value is `NaN`
@@ -157,10 +159,10 @@
         - Returns a new string with the first match replaced with `replacement`
         - if the `g` flag is used, all matches are replaced.
         - Can use capture groups, using `$1`-`$9` to represent the captured group
-    - `string.slice(start, end)`
+    - `string.slice(start, end)` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice))
         - Returns a new string that is the substring of `string` from index `start` up to, but not including, index `end`.
         - If `end` is not given as an argument, returns the rest of the string from index `start`.
-    - `string.split(separator)`
+    - `string.split(separator)` ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split))
         - Splits the string into an array of strings a the string `seperator`
 - `undefined`
     - Means it implicitly doesn't have a value.
@@ -356,10 +358,10 @@
 - function expressions
     - Happens when the `function` keyword is not the first part of the statement
     - Can be stored in a variable, passed as an argument, etc...
-    - `let myFunc = function (parameters) { ... }`
+    - `let myFunc = function (parameters) { ... };`
     - Function can be named optionally, function name is only accessible inside the function body
 - arrow functions
-    - `(parameters) => expression` or `(parameters) => { ... }`
+    - `(parameters) => expression` or `(parameters) => { ... };`
     - If single line, the expressions return value is its return value
     - Used mainly for callback functions
         - A callback function is a function passed to another invoked function, in which the invoked function calls the callback function.
@@ -386,21 +388,93 @@
     - Each element is a different argument
 
 ## Closures ([Lesson 2: Closures](https://launchschool.com/lessons/7cd4abf4/assignments/0ea7c745))
+- The combination of a function and the lexical environment within which that function was defined.
+- Upon a function being defined, JavaScript takes note of everything in scope(addresses to variables)
+- Can access variables referenced by the closure even if they are no longer in scope (Variables will show changes)
+-   ```js
+    function createSequence() {
+        let num = 0;
+        return function() {
+            num += 1;
+            return num;
+        }
+    }
+
+    const next = createSequence();
+    const anotherNext = createSequence();
+    next(); // 1
+    next(); // 2
+    anotherNext(); // 1
+    next(); // 3
+    anotherNext(); // 2
+    ```
 
 ## side effects ([Lesson 5: Pure Functions and Side Effects](https://launchschool.com/lessons/79b41804/assignments/88138dd5))
+- A function is said to have side effects if it performs any of these actions:
+    1. It reassignes any non-local variable.
+    2. It mutates the value of any object referenced by a non-local variable.
+    3. It reads from or writes any data entity (files, network, clock, console, etc..) that is non-local to your program.
+    4. It throws an error.
+    5. It calls another function that has side effects that will effect something not local to the calling function
+- We say a function has side effects when it has side effects when used as intended.
+    - Omitting required arguments isn't intended
+    - Passing the wrong type isn't intended
+    - Calling function prior to required setup(connection opening) isn't intended
 
 ## pure functions ([Lesson 5: Pure Functions and Side Effects](https://launchschool.com/lessons/79b41804/assignments/88138dd5))
+- Functions that:
+    1. Have no side effects
+    2. Given the same set of arguments, the function always returns the same value during the function's lifetime.
+        - The return value depends solely on its arguments.
+- Nothing else in the program can influence a pure function during its lifetime.
+- Functions can be pure for some sets of arguments, while impure for others
 
 ## console.log vs return ([Return Values](https://launchschool.com/books/javascript/read/functions#returnvalues)) ([Expressions and Return Values](https://launchschool.com/books/javascript/read/basics#expressionsandreturnvalues))
+- `console.log` Logs its argument to the console and returns `undefined`
+    - `console.log` does not return a usable value
+- Functions by default return `undefined`
+- Using the `return` statement, you can set the return value of a function to something meaningful.
 
-## partial function application ([Partial Function Application](https://launchschool.com/lessons/7cd4abf4/assignments/0ea7c745))
+## partial function application ([Lesson 2: Closures](https://launchschool.com/lessons/7cd4abf4/assignments/0ea7c745)) ([Partial Function Application](https://launchschool.com/lessons/7cd4abf4/assignments/0ea7c745))
+- Is an application of closures
+- Allows you to create a function, that when called applies some of another functions arguments, and allows you to supply the rest of the arguments you call the returned argument.
+-   ```js
+    function add(first, second) {
+        return first + second;
+    }
+
+    function createAdder(firstNumber) {
+        return (secondNumber) => add(firstNumber, secondNumber);
+    }
+
+    const addFive = createAdder(5);
+    const addTen = createAdder(10);
+
+    addFive(3);  // 8
+    addTen(3);   // 13
+    addFive(25); // 30
+    addTen(25);  // 35
+    ```
+- Is most useful when you need to pass a function to another function, but not all the arguments will be passed by that other function. You can create a partial function application apply the arguments missing and pass the returned function to the other function.
+- Is only a partial function application when the number of arguments a function takes is reduced.
 
 # Syntax
 ## Expressions vs Statements ([Lesson 1: Expressions and Statements](https://launchschool.com/lessons/7377ece4/assignments/d84fdace))
+- Expressions can have a value captured.
+- Statements can not have a value captured.
 
 ## Control Statements ([Lesson 1: Conditionals](https://launchschool.com/lessons/7377ece4/assignments/5f7c3a20)) ([Lesson 1: Looping and Iteration](https://launchschool.com/lessons/7377ece4/assignments/a261b334))
+- `if {} else if {} else {}`
+- `for`
+    - `for in`
+    - `for of`
+- `while`
+    - `do {} while`
+- `case`
 
 ## strict mode vs. sloppy mode ([Modern JavaScript: Strict Mode](https://launchschool.com/gists/406ba491))
+### Strict Mode
+### Sloppy Mode
 
 ## JavaScript syntactic sugar ([Modern JavaScript: Syntactic Sugar](https://launchschool.com/gists/2edcf7d7))
 
