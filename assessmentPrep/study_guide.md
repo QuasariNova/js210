@@ -462,20 +462,174 @@
 ## Expressions vs Statements ([Lesson 1: Expressions and Statements](https://launchschool.com/lessons/7377ece4/assignments/d84fdace))
 - Expressions can have a value captured.
 - Statements can not have a value captured.
+    - Variable declaration is a statement
+    - Control Statements are statements
 
 ## Control Statements ([Lesson 1: Conditionals](https://launchschool.com/lessons/7377ece4/assignments/5f7c3a20)) ([Lesson 1: Looping and Iteration](https://launchschool.com/lessons/7377ece4/assignments/a261b334))
 - `if {} else if {} else {}`
 - `for`
     - `for in`
+        - Iterates over the keys in an object
+        - `for (let key in object) { }`
     - `for of`
+        - Iterates over elements in an enumerable collection
+        - `for (let value of collection) { }`
 - `while`
     - `do {} while`
-- `case`
+- `switch`
+    - Must break between `case`s unless you want fall-through
+    - `case`
+    - `default`
 
 ## strict mode vs. sloppy mode ([Modern JavaScript: Strict Mode](https://launchschool.com/gists/406ba491))
 ### Strict Mode
+- Enabled by adding `'use strict';`
+    - Can be added to the top of the file for global strict mode
+    - Or at the top of a function to selectively use strict mode on a function
+    - Lexically scoped
+    - The `'use strict';` is a pragma.
+- Eliminates some silent errors
+- Prevents some code that can inhibit JavaScript's optimizations
+- Prohibits using names and syntax that may conflict with future versions
+- Disallows implicit global variables(variables that were assigned, but not declared)
+    - Throws a `ReferenceError`
+    - Helps identify misspelled names, which could become implicit global variables
+- Disallows starting number > 1 and < -1 with 0
+    - Numbers that start with 0 are interpretted as Octal values in sloppy mode.
+    - Disallows octal literals basically
+- Prevents declaring two function parameters with the same name
+- Prevents using keywords as name
+- prevents using `delete` operator on variable name
+- Forbids binding of `eval` and `arguments` in any way
+- Disables access to some properties of the `arguments` object
+- Disables the `with` statement
+- Prevents function declarations inside blocks
+- Prevents declaring two properties with the same name in an object
+
 ### Sloppy Mode
+- Allows some errors to go silent.
+    - Something unintended happened, but did not throw an error
+    - Runs as though nothing went wrong
+- Allows a lot of bad practices just to make sure code keeps running
 
 ## JavaScript syntactic sugar ([Modern JavaScript: Syntactic Sugar](https://launchschool.com/gists/2edcf7d7))
+- Concise Property Initializers
+    - If you have a variable the same name as an intended property for an object literal, you can just use the variable instead of `variableName: variable`
+    - ```js
+      function xyzzy(foo, bar, qux) {
+        return {
+          foo,
+          bar,
+          answer: qux,
+        };
+      }
+      ```
+- Concise Methods
+    - If you are defining functions inside an object for methods, you can shorten its declaration
+    - ```js
+      let obj = {
+        foo: function() { // long form
+          // do something
+        },
+
+        bar(arg1, arg2) { // concise
+          // do something else with arg1 and arg2
+        },
+      }
+      ```
+- Object Destructuring
+    - Like Concise Property Initializers, you can assign property values from an object to variables easier if the variable names are the same as the property names.
+    - ```js
+      let obj = {
+        foo: "foo",
+        bar: "bar",
+        qux: 42,
+      };
+
+      let { foo, bar, qux } = obj;
+      ```
+    - Ordering in brackets is not important
+    - Also works with function parameters
+        - ```js
+          function xyzzy({foo, bar, qux}) { ... }
+
+          xyzzy(obj);
+          ```
+- Array destructuring:
+    - Allows you to assign elements directly to variables if size is known and structure known
+    - ```js
+      let [one, two, three] = [1, 2, 3];
+      let [,,ableTo,,skip] = [0, 1, 2, 3, 4];
+      ```
+    - Is handy for value swaps
+        - ```js
+          let one = 1;
+          let two = 2;
+
+          [one, two] = [two, one];
+
+          console.log(one); // 2
+          console.log(two); // 1
+          ```
+- Spread Syntax
+    - Uses the `...` operator.
+    - Spreads array elements when array is passed as an argument to a function to the available parameters.
+        - ```js
+          function add3(item1, item2, item3) {
+            return item1 + item2 + item3;
+          }
+
+          let foo = [3, 7, 11];
+          add3(...foo); // => 21
+          ```
+    - Allows you to turn an iteratable collection into a number of elements in a array literal as well.
+        - ```js
+          // Concatenate arrays
+          let foo = [1, 2, 3];
+          let bar = [4, 5, 6];
+          let qux = [...foo, ...bar];
+          qux;  // => [1, 2, 3, 4, 5, 6]
+          ```
+    - Also works with object properties
+        - ```js
+          // Merge objects
+          let foo = { qux: 1, baz: 2 };
+          let xyz = { baz: 3, sup: 4 };
+          let obj = { ...foo, ...xyz };
+          obj;  // => { qux: 1, baz: 3, sup: 4 }
+          ```
+- Rest Syntax
+    - Uses the `...` operator
+    - Like Spread syntax, but in reverse
+    - Able to take the "rest" of the collection of something as its own elements
+        - ```js
+          let foo = [1, 2, 3, 4];
+          let [ bar, ...otherStuff ] = foo;
+          console.log(bar);        // 1
+          console.log(otherStuff); // [2, 3, 4]
+          ```
+        - ```js
+          let foo = {bar: 1, qux: 2, baz: 3, xyz: 4};
+          let { bar, baz, ...otherStuff } = foo;
+          console.log(bar);        // 1
+          console.log(baz);        // 3
+          console.log(otherStuff); // {qux: 2, xyz: 4}
+          ```
+    - Gives you a parameter that can take any number of arguments
+        - ```js
+          function maxItem(first, ...moreArgs) {
+            let maximum = first;
+            moreArgs.forEach(value => {
+              if (value > maximum) {
+                maximum = value;
+              }
+            });
+
+            return maximum;
+          }
+
+          console.log(maxItem(2, 6, 10, 4, -3));
+          ```
 
 ## Errors ([Lesson 6: Errors](https://launchschool.com/lessons/d299fc36/assignments/d52565cc)) ([Lesson 6: Catching Errors](https://launchschool.com/lessons/d299fc36/assignments/748ab030))
+- `ReferenceError` Occurs when you attempt to use a variable or function that does not exist
