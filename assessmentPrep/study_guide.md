@@ -633,3 +633,14 @@
 
 ## Errors ([Lesson 6: Errors](https://launchschool.com/lessons/d299fc36/assignments/d52565cc)) ([Lesson 6: Catching Errors](https://launchschool.com/lessons/d299fc36/assignments/748ab030))
 - `ReferenceError` Occurs when you attempt to use a variable or function that does not exist
+- `TypeError` Occurs when you try to access a property on a value that does not have any properties or calling something as a function when it is not a function.
+- `SyntaxError` Occurs if JavaScript can't interpret the code given (missing parenthesis, invalid syntax, trying to parse a JSON that is not JSON).
+- Use Guard Clauses to avoid errors
+    - Prevent edge cases
+- `try { ... } catch (error) { ... } finally { ... }`
+    - `try` runs until it completes or an error is thrown.
+    - If an error is thrown, it goes to the `catch` block passing the error to it
+    - `finally` runs whether the `try` through an error or not after the `try` and `catch` are executed.
+    - Use when:
+        - A built-in JavaScript Function or method can throw an Error and you need to handle or prevent that Error.
+        - A simple guard clause is impossible or impractical to prevent the Error.
